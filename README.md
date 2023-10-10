@@ -32,13 +32,32 @@ To use the Twitch API, GameGuideHub requires client credentials, which can be ob
 - They can search for games, see top games, watch live streams, access video archives, and explore popular clips.
 - Users can also interact with the content, such as commenting on streams and saving favorite games.
 
+## API Documentation
+
+GameGuideHub utilizes the Twitch API to retrieve data related to games, streams, videos, and clips. This section provides details on how to use the Twitch API endpoints in the context of this project.
+
 ### 1. Get Games
 
 - **Endpoint:** `GET https://api.twitch.tv/helix/games`
 - **Description:** Retrieve information about one or more games on Twitch.
 
-**Example Request:**
-```bash
-curl -X GET "https://api.twitch.tv/helix/games" \
--H "Client-ID: YOUR_CLIENT_ID" \
--H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+### 2. Get Top Games
+
+- **Endpoint:** `GET https://api.twitch.tv/helix/games/top`
+- **Description:** `Get a list of the top games on Twitch by viewership.`
+
+### 3.Get Streams
+- **Endpoint:** `GET https://api.twitch.tv/helix/streams`
+- **Description:** `Retrieve live streams on Twitch, with various filtering options.`
+
+### 4. Get Videos
+- **Endpoint:** `GET https://api.twitch.tv/helix/videos`
+- **Description:** Get video information, including past broadcasts and highlights.
+
+### 5. Get Clips
+- **Endpoint:** GET https://api.twitch.tv/helix/clips
+- **Description:** Retrieve popular clips on Twitch.
+
+### 6. Getting Tokens (OAuth)
+- **Endpoint:** POST https://id.twitch.tv/oauth2/token
+- **Description:** Obtain OAuth tokens using the client credentials grant flow.
