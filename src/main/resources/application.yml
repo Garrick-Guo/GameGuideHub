@@ -1,0 +1,4 @@
+#This file is where we customize how the application runs.
+logging:
+  level:
+    org.apache.coyote.http11.Http11InputBuffer: DEBUG # Incoming HTTP requests
