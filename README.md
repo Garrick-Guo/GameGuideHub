@@ -55,9 +55,9 @@ GameGuideHub utilizes the Twitch API to retrieve data related to games, streams,
 - **Description:** Get video information, including past broadcasts and highlights.
 
 ### 5. Get Clips
-- **Endpoint:** GET https://api.twitch.tv/helix/clips
+- **Endpoint:** `GET https://api.twitch.tv/helix/clips`
 - **Description:** Retrieve popular clips on Twitch.
 
 ### 6. Getting Tokens (OAuth)
-- **Endpoint:** POST https://id.twitch.tv/oauth2/token
+- **Endpoint:** `POST https://id.twitch.tv/oauth2/token`
 - **Description:** Obtain OAuth tokens using the client credentials grant flow.
