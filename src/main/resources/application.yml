@@ -1,4 +1,11 @@
 #This file is where we customize how the application runs.
 logging:
   level:
+    #get detailed logs for incoming HTTP requests
     org.apache.coyote.http11.Http11InputBuffer: DEBUG # Incoming HTTP requests
+    #get very detailed and extensive logging for outgoing HTTP requests
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE # Outgoing http request
+
+twitch:
+  client-id: "cb6jug48icgg3y81ekl36idxm2dmle"
+  secret: "9thpq44is0pagc20vyt8l5eisruvyb"
