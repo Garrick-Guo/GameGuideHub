@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.support.WebClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
-
-@Configuration
+//Serve as application.yml
+@Configuration // used for Dependency Injection
 public class AppConfig {
-    @Bean
+    @Bean // used for Dependency Injection
     public TwitchIdentityClient twitchIdentityClient() {
         WebClient client = WebClient.builder()
                 .baseUrl("https://id.twitch.tv/")
