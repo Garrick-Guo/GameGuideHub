@@ -1,7 +1,12 @@
 package com.laioffer.twitch.external;
 
-import com.laioffer.twitch.external.model.*;
+import com.laioffer.twitch.external.model.Clip;
+import com.laioffer.twitch.external.model.Game;
+import com.laioffer.twitch.external.model.Stream;
+import com.laioffer.twitch.external.model.TwitchToken;
+import com.laioffer.twitch.external.model.Video;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
@@ -11,6 +16,7 @@ import java.util.function.Supplier;
 
 @Service
 public class TwitchService {
+
     final String twitchClientId;
     final String twitchSecret;
     final TwitchApiClient twitchApiClient;
@@ -34,26 +40,31 @@ public class TwitchService {
                 twitchApiClient.getTopGames(bearerToken()).data()
         );
     }
+
     public List<Game> getGames(String name) {
-        return requestWithToken(()->
+        return requestWithToken(() ->
                 twitchApiClient.getGames(bearerToken(), name).data()
-                );
+        );
     }
+
     public List<Stream> getSteams(List<String> gameIds, int first) {
-        return requestWithToken(()->
+        return requestWithToken(() ->
                 twitchApiClient.getStreams(bearerToken(), gameIds, first).data()
-                );
+        );
     }
+
     public List<Video> getVideos(String gameId, int first) {
         return requestWithToken(() ->
                 twitchApiClient.getVideos(bearerToken(), gameId, first).data()
-                );
+        );
     }
+
     public List<Clip> getClips(String gameId, int first) {
-        return requestWithToken(()->
-                twitchApiClient.getClip(bearerToken(), gameId, first).data()
-                );
+        return requestWithToken(() ->
+                twitchApiClient.getClips(bearerToken(), gameId, first).data()
+        );
     }
+
     public List<String> getTopGameIds() {
         List<String> topGameIds = new ArrayList<>();
         for (Game game : getTopGames()) {
@@ -62,7 +73,6 @@ public class TwitchService {
         return topGameIds;
     }
 
-    //use generics in a helper function requestWithToken
     private <T> T requestWithToken(Supplier<T> requestSupplier) {
         if (token == null) {
             token = twitchIdentityClient.requestAccessToken(twitchClientId, twitchSecret, "client_credentials");
@@ -74,8 +84,8 @@ public class TwitchService {
             return requestSupplier.get();
         }
     }
+
     private String bearerToken() {
         return "Bearer " + token.accessToken();
     }
-
 }

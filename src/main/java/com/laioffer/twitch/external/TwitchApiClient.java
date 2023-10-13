@@ -11,37 +11,33 @@ import org.springframework.web.service.annotation.HttpExchange;
 
 import java.util.List;
 
-/*
-The interface is followed by the API, using a declarative HTTP client
-GET https://api.twitch.tv/helix/games
-GET https://api.twitch.tv/helix/games/top
-GET https://api.twitch.tv/helix/streams
-GET https://api.twitch.tv/helix/videos
-GET https://api.twitch.tv/helix/clips
-
- */
 @HttpExchange("/helix")
 public interface TwitchApiClient {
-    @GetExchange("/games/")
+
+    @GetExchange( "/games/")
     GameResponse getGames(@RequestHeader("Authorization") String authorization, @RequestParam("name") String name);
-    @GetExchange("/games/top")
+
+    @GetExchange( "/games/top")
     GameResponse getTopGames(@RequestHeader("Authorization") String authorization);
-    @GetExchange("/videos/")
+
+    @GetExchange( "/videos/")
     VideoResponse getVideos(
             @RequestHeader("Authorization") String authorization,
             @RequestParam("game_id") String gameId,
             @RequestParam("first") int first
     );
-    @GetExchange("/clips/")
-    ClipResponse getClip(
+
+    @GetExchange( "/clips/")
+    ClipResponse getClips(
             @RequestHeader("Authorization") String authorization,
             @RequestParam("game_id") String gameId,
             @RequestParam("first") int first
     );
-    @GetExchange("/streams/")
+
+    @GetExchange( "/streams/")
     StreamResponse getStreams(
             @RequestHeader("Authorization") String authorization,
-            @RequestParam("game_id")List<String> gameIds,
+            @RequestParam("game_id") List<String> gameIds,
             @RequestParam("first") int first
-            );
+    );
 }

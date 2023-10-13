@@ -20,7 +20,7 @@ public class AppConfig {
         return factory.createClient(TwitchIdentityClient.class);
     }
     @Bean
-    public TwitchApiClient twitchApiClient(@Value("${twithc.client-id}") String twitchClientId){
+    public TwitchApiClient twitchApiClient(@Value("${twitch.client-id}") String twitchClientId){
         WebClient client = WebClient.builder()
                 .baseUrl("https://api.twitch.tv")
                 .defaultHeader("Client-Id", twitchClientId)
