@@ -16,6 +16,10 @@ repositories {
 }
 
 dependencies {
+    //spring boot data JDBC starter
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    //web starter
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     //create example for return daynamic data
