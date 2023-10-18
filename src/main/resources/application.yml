@@ -1,4 +1,8 @@
 #This file is where we customize how the application runs.
+spring:
+  jackson:
+    default-property-inclusion: non_null
+
 logging:
   level:
     #get detailed logs for incoming HTTP requests
