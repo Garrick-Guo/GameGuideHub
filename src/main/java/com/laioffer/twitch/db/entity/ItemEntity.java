@@ -5,9 +5,12 @@ import com.laioffer.twitch.external.model.Clip;
 import com.laioffer.twitch.external.model.Stream;
 import com.laioffer.twitch.external.model.Video;
 import com.laioffer.twitch.model.ItemType;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table("items")
 public record ItemEntity(
-        Long id,
+        @Id Long id,
         @JsonProperty("twitch_id") String twitchId,
         String title,
         String url,
@@ -16,8 +19,9 @@ public record ItemEntity(
         @JsonProperty("game_id") String gameId,
         @JsonProperty("item_type") ItemType type
 ) {
+
     public ItemEntity(String gameId, Video video) {
-        this(null, video.id(), video.title(), video.url(), video.thumbnailUrl(), video.userName(),gameId,ItemType.VIDEO);
+        this(null, video.id(), video.title(), video.url(), video.thumbnailUrl(), video.userName(), gameId, ItemType.VIDEO);
     }
 
     public ItemEntity(Clip clip) {
@@ -25,6 +29,6 @@ public record ItemEntity(
     }
 
     public ItemEntity(Stream stream) {
-        this(null, stream.id(), stream.title(), stream.thumbnailUrl(), stream.thumbnailUrl(), stream.userName(), stream.gameId(), ItemType.STREAM);
+        this(null, stream.id(), stream.title(), null, stream.thumbnailUrl(), stream.userName(), stream.gameId(), ItemType.STREAM);
     }
 }
